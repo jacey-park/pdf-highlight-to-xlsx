@@ -6,12 +6,12 @@ import io
 
 # 1. 앱 제목 및 설명 설정
 st.title("🖍️ PDF 형광펜 추출기")
-st.write("PDF 파일을 업로드하면 형광펜으로 칠한 부분과 페이지 번호를 엑셀로 추출해줍니다.")
+st.write("PDF 파일을 업로드하면 형광펜으로 칠한 부분과 페이지 번호를 엑셀로 추출합니다.")
 
-# 2. 사이드바: 변수 설정 (사용자가 직접 입력 가능)
+# 2. 사이드바: 변수 설정
 st.sidebar.header("설정")
 front_matter = st.sidebar.number_input(
-    "앞부속 페이지 수 (실제 1페이지가 시작되기 전 페이지 수)", 
+    "앞부속 페이지 수", 
     min_value=0, 
     value=16, 
     step=1
@@ -63,7 +63,7 @@ if uploaded_file is not None:
         with pd.ExcelWriter(output, engine='openpyxl') as writer:
             df.to_excel(writer, index=False)
         
-        st.success(f"총 {len(data)}개의 하이라이트를 찾았습니다! 아래 버튼을 눌러 다운로드하세요.")
+        st.success(f"총 {len(data)}개의 키워드를 찾았습니다! 아래 버튼을 눌러 다운로드하세요.")
         
         st.download_button(
             label="📥 엑셀 파일 다운로드",
